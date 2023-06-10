@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function List() {
   var productList = [
     {
@@ -24,14 +26,18 @@ export default function List() {
   ];
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col">
+    <div className="flex items-center justify-center flex-col pt-32 pb-32">
       <h1 className="text-stone-100 text-5xl font-bold mb-4">상품 목록</h1>
-      {productList.map((product) => (
-        <div
-          key={product.id}
-          className="bg-slate-200 mt-8 w-1/4 p-5 rounded-md"
-        >
-          <div className="text-center w-full bg-gray-500">이미지</div>
+      {productList.map((product, index) => (
+        <div key={product.id} className="bg-white mt-10 w-1/4 p-5 rounded-md">
+          <Image
+            src={`/images/product_${index + 1}.jpg`}
+            alt={product.name}
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="w-full h-auto"
+          />
           <div className="flex justify-between mt-2">
             <h2 className="text-2xl font-semibold">
               [{product.company}] {product.name}
