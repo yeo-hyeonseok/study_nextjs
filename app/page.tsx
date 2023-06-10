@@ -4,7 +4,7 @@ export default function Home() {
 
   return (
     <div className="flex items-center justify-center h-screen flex-col">
-      <h1 className="text-stone-100 text-5xl font-bold text-center">NEFRESH</h1>
+      <h1 className="text-stone-100 text-5xl font-bold">NEFRESH</h1>
       <a href={link} className="text-stone-100 mt-1">
         by {author}
       </a>
