@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ProductStore } from "./types";
+import { ProductStore, CartStore, CartItem } from "./types";
 
 export const productStore = create<ProductStore>(() => ({
   productList: [
@@ -27,6 +27,9 @@ export const productStore = create<ProductStore>(() => ({
   ],
 }));
 
-const cartStore = create(() => ({
+export const cartStore = create<CartStore>((set: any) => ({
   cartList: [],
+  addCartItem(item: CartItem) {
+    set((state: any) => ({ cartList: [...state.cartList, item] }));
+  },
 }));
