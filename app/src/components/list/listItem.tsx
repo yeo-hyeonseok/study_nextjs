@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { cartStore } from "../../store";
 import SuperButton from "../common/superButton";
 
 interface ListItemProps {
@@ -9,6 +13,9 @@ interface ListItemProps {
 }
 
 export default function ListItem({ id, name, company, price }: ListItemProps) {
+  let [count, setCount] = useState(0);
+  const { addCartItem } = cartStore();
+
   return (
     <div className="bg-white mt-10 w-1/4 p5-8 pb-5 pl-5 pr-5 rounded-md relative">
       <Image
@@ -26,18 +33,37 @@ export default function ListItem({ id, name, company, price }: ListItemProps) {
         <div className="flex justify-between items-center mt-2">
           <p className="text-xl">{price}원</p>
           <div>
-            <span className="text-xl mr-4">수량: 1</span>
-            <button className="text-2xl rounded border-2 pl-2 pr-2 mr-1">
+            <span className="text-xl mr-4">수량: {count}</span>
+            <button
+              onClick={() => {
+                if (count > 0) setCount(count - 1);
+              }}
+              className="text-2xl rounded border-2 pl-2 pr-2 mr-1"
+            >
               -
             </button>
-            <button className="text-2xl rounded border-2 pl-2 pr-2">+</button>
+            <button
+              onClick={() => {
+                setCount(count + 1);
+              }}
+              className="text-2xl rounded border-2 pl-2 pr-2"
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
       <SuperButton
         className="absolute right-2 top-2"
         text="장바구니"
-        onClick={() => {}}
+        onClick={() => {
+          addCartItem({
+            id,
+            name,
+            price,
+            count,
+          });
+        }}
       />
     </div>
   );
