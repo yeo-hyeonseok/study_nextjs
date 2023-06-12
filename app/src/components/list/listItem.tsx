@@ -10,7 +10,7 @@ interface ListItemProps {
 
 export default function ListItem({ id, name, company, price }: ListItemProps) {
   return (
-    <div className="bg-white mt-10 w-1/4 p5-8 pb-5 pl-5 pr-5 rounded-md">
+    <div className="bg-white mt-10 w-1/4 p5-8 pb-5 pl-5 pr-5 rounded-md relative">
       <Image
         src={`/images/product_${id}.jpg`}
         alt={name}
@@ -25,9 +25,20 @@ export default function ListItem({ id, name, company, price }: ListItemProps) {
         </h2>
         <div className="flex justify-between items-center mt-2">
           <p className="text-xl">{price}원</p>
-          <SuperButton text="장바구니" onClick={() => {}} />
+          <div>
+            <span className="text-xl mr-4">수량: 1</span>
+            <button className="text-2xl rounded border-2 pl-2 pr-2 mr-1">
+              -
+            </button>
+            <button className="text-2xl rounded border-2 pl-2 pr-2">+</button>
+          </div>
         </div>
       </div>
+      <SuperButton
+        className="absolute right-2 top-2"
+        text="장바구니"
+        onClick={() => {}}
+      />
     </div>
   );
 }
