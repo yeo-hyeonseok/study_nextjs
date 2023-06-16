@@ -16,25 +16,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-zinc-900`}>
-        <div className="bg-zinc-800 fixed h-screen w-1/6 pl-6 pt-32">
+      <body
+        className={`${inter.className} bg-zinc-900 border border-slate-100`}
+      >
+        <div className="flex justify-around">
           <Link
             href="/"
-            className="mt-8 block text-3xl text-slate-300 font-semibold"
+            className="text-xl text-slate-300 font-semibold border border-slate-100 flex-1 text-center pt-2 pb-2"
           >
-            메인 페이지
+            MAIN
           </Link>
           <Link
             href="/list"
-            className="mt-8 block text-3xl text-slate-300 font-semibold"
+            className="text-xl text-slate-300 font-semibold border border-slate-100 flex-1 text-center pt-2 pb-2"
           >
-            상품 목록
-          </Link>
-          <Link
-            href="/cart"
-            className="mt-8 block text-3xl text-slate-300 font-semibold"
-          >
-            장바구니
+            POSTS
           </Link>
         </div>
         {children}
