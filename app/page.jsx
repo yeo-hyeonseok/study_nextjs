@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <div className="flex items-center h-screen flex-col">
-      <div className="w-1/3">
+      <div className="w-1/3 mt-5">
         {posts.map((post, index) => (
           <div key={post._id} className="mt-6">
             <div className="text-stone-100 text-xl font-semibold border border-slate-100 p-2">
