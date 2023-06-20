@@ -26,10 +26,3 @@ export const productStore = create<ProductStore>(() => ({
     },
   ],
 }));
-
-export const cartStore = create<CartStore>((set: any) => ({
-  cartList: [],
-  addCartItem(item: CartItem) {
-    set((state: any) => ({ cartList: [...state.cartList, item] }));
-  },
-}));
