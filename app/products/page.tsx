@@ -1,7 +1,7 @@
 "use client";
 
 import { productStore } from "../src/store";
-import ListItem from "../src/components/list/listItem";
+import ProductItem from "../src/components/products/productItem";
 
 export default function List() {
   var { productList } = productStore();
@@ -9,7 +9,7 @@ export default function List() {
   return (
     <div className="flex items-center justify-center flex-col pt-15 pb-15">
       {productList.map((product, _) => (
-        <ListItem
+        <ProductItem
           key={product.id}
           id={product.id}
           className="mt-10"
