@@ -25,10 +25,16 @@ export default function RootLayout({
             POSTS
           </Link>
           <Link
-            href="/list"
+            href="/products"
             className="text-xl text-stone-100 font-semibold border border-stone-100 flex-1 text-center pt-2 pb-2"
           >
-            WRITE
+            PRODUCTS
+          </Link>
+          <Link
+            href="/routers"
+            className="text-xl text-stone-100 font-semibold border border-stone-100 flex-1 text-center pt-2 pb-2"
+          >
+            ROUTERS
           </Link>
         </div>
         {children}

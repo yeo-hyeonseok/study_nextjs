@@ -13,7 +13,10 @@ export default function SuperButton({
 }: SuperButtonProps) {
   return (
     <button
-      className={`text-lg font-semibold bg-orange-400 text-white pt-1 pb-1 pl-2 pr-2 rounded ${className}`}
+      className={
+        "text-lg font-semibold text-white pt-1 pb-1 pl-2 pr-2 border-2 border-stone-100" +
+        className
+      }
       onClick={onClick}
     >
       {text}
