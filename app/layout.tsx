@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Navigation from "./src/components/common/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,26 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-goku`}>
-        <div className="flex justify-around">
-          <Link
-            href="/"
-            className="text-xl text-stone-100 font-semibold border border-stone-100 flex-1 text-center pt-2 pb-2"
-          >
-            POSTS
-          </Link>
-          <Link
-            href="/products"
-            className="text-xl text-stone-100 font-semibold border border-stone-100 flex-1 text-center pt-2 pb-2"
-          >
-            PRODUCTS
-          </Link>
-          <Link
-            href="/routers"
-            className="text-xl text-stone-100 font-semibold border border-stone-100 flex-1 text-center pt-2 pb-2"
-          >
-            ROUTERS
-          </Link>
-        </div>
+        <Navigation />
         {children}
       </body>
     </html>
