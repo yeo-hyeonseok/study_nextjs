@@ -30,7 +30,9 @@
     ".next/types/**/*.ts",
     "util/db.js",
     "app/page.jsx",
-    "app/detail/[id]/page.jsx"
+    "app/detail/[id]/page.jsx",
+    "pages/api/posts.js",
+    "pages/api/test.js"
   ],
   "exclude": ["node_modules"]
 }
