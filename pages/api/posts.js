@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   // 게시글 작성
   if (req.method === "POST") {
     if (req.body.title === "" || req.body.content == "") {
-      return res.status(500);
+      return res.status(500).json("제목이나 내용 입력 해주셈");
     }
 
     try {
