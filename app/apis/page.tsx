@@ -5,7 +5,7 @@ export default function Apis() {
     <div className="flex items-center flex-col pt-8 pb-8">
       <div className="w-1/4">
         <form
-          action="/api/posts"
+          action="/api/post/getPost"
           method="GET"
           className="border-2 border-stone-100 flex items-center p-2 justify-between"
         >
@@ -21,7 +21,7 @@ export default function Apis() {
           <SuperButton type="submit" text="눌러보셈" />
         </form>
         <form
-          action="/api/posts"
+          action="/api/post/createPost"
           method="POST"
           className="border-2 border-stone-100 p-2 mt-5"
         >
@@ -48,7 +48,7 @@ export default function Apis() {
           </div>
         </form>
         <form
-          action="/api/register"
+          action="/api/user/register"
           method="POST"
           className="border-2 border-stone-100 p-2 mt-5"
         >

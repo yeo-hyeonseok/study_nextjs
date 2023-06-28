@@ -33,7 +33,7 @@ export default function SuperTextField({
       name={name}
       type="text"
       className={`w-full pl-1 pr-1 ${className}`}
-      value={textInput}
+      defaultValue={textInput}
       required={required}
       readOnly={readonly}
       disabled={disabled}
