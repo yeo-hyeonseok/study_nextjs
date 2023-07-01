@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import SuperButton from "../common/superButton";
 
 interface PostItemProps {
@@ -17,10 +18,13 @@ export default function PostItem({
 }: PostItemProps) {
   const router = useRouter();
 
+  const [deletedStyle, setDeletedStyle] = useState("opacity-100");
+
   const deletePost = () => {
-    fetch(`/api/post/deletePost`, {
+    // 쿼리 쓰면 장점이 GET 요청할 때도 서버한테 데이터를 보낼 수 있음
+    // 다만, 복잡하거나 민감한 데이터를 전송할 때는 사용하지 말 것 => 코드가 더러워보이거나 url에 노출됨
+    fetch(`/api/post/deletePost?id=${postId}`, {
       method: "POST",
-      body: postId,
     })
       .then((res) => {
         if (res.status === 200) {
@@ -40,7 +44,7 @@ export default function PostItem({
   };
 
   return (
-    <div id={id} className="mt-6 opacity-100 transition-all duration-500">
+    <div id={id} className={`mt-6 transition-all duration-500 ${deletedStyle}`}>
       <p className="text-stone-100 text-xl font-semibold border border-stone-100 p-2 block">
         TITLE: {title}
       </p>
@@ -55,7 +59,16 @@ export default function PostItem({
             router.push(`/post/${postId}`);
           }}
         />
-        <SuperButton text="삭제" onClick={() => deletePost()} />
+        <SuperButton
+          text="삭제"
+          onClick={() => {
+            deletePost();
+            setDeletedStyle("opacity-0");
+            setTimeout(() => {
+              setDeletedStyle("hidden");
+            }, 500);
+          }}
+        />
       </div>
     </div>
   );
