@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     try {
       const collection = await db.collection("post");
       const result = await collection.deleteOne({
-        _id: new ObjectId(req.body),
+        _id: new ObjectId(req.query.id),
       });
 
       // collection에서 document 삭제 시 수행 결과도 반환해줌
