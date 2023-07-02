@@ -33,7 +33,8 @@
     "app/detail/[id]/page.jsx",
     "pages/api/posts.js",
     "pages/api/test.js",
-    "app/post/[id]/page.jsx"
+    "app/post/[id]/page.jsx",
+    "app/list/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

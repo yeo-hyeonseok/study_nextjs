@@ -28,6 +28,9 @@ export default function Navigation() {
       <Link href="/routers" className={getStyle("/routers")}>
         ROUTERS
       </Link>
+      <Link href="/caching" className={getStyle("/caching")}>
+        CACHING
+      </Link>
     </div>
   );
 }
