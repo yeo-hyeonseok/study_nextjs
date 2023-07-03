@@ -31,6 +31,9 @@ export default function Navigation() {
       <Link href="/caching" className={getStyle("/caching")}>
         CACHING
       </Link>
+      <Link href="/rendering" className={getStyle("/rendering")}>
+        RENDERING
+      </Link>
     </div>
   );
 }
