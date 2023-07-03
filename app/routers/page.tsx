@@ -14,10 +14,9 @@ export default function Routers() {
   let searchParams = useSearchParams();
 
   return (
-    <div className="flex items-center flex-col pt-4 pb-8">
+    <div className="flex items-center flex-col pt-8 pb-8">
       <div className="w-1/3">
         <SuperItemCard
-          className="mt-4"
           label="router.push('/')"
           isButton={true}
           onClickButton={() => {

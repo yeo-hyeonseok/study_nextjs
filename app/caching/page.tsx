@@ -28,7 +28,7 @@ export default function Caching() {
           </div>
         </div>
         <SuperItemCard
-          className="mt-4"
+          className="mt-6"
           label="fetch('/URL', {cache: 'no-store'})"
           desc="응답 데이터를 캐싱하기 싫다면 이거 쓰셈"
         />
