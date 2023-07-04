@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         }
       );
 
-      return res.redirect(302, "/");
+      return res.redirect(302, "/posts");
     } catch (error) {
       console.log(error);
     }

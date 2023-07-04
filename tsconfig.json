@@ -34,7 +34,8 @@
     "pages/api/posts.js",
     "pages/api/test.js",
     "app/post/[id]/page.jsx",
-    "app/list/page.jsx"
+    "app/list/page.jsx",
+    "app/posts/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

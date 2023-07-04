@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       const collection = await db.collection("post");
       collection.insertOne(req.body);
 
-      return res.redirect(302, "/");
+      return res.redirect(302, "/posts");
     } catch (error) {
       console.log(error);
     }

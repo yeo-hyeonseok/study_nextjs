@@ -16,8 +16,7 @@ export default async function handler(req, res) {
         return res.status(500);
       }
 
-      return res.status(200).json("석제");
-      //return res.redirect(302, "/");
+      return res.status(200).json("삭제됨");
     } catch (error) {
       console.log(error);
     }
