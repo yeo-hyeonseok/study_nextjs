@@ -1,5 +1,5 @@
 import { connectDB } from "@/util/db";
-import PostItem from "../src/components/main/postItem";
+import PostItem from "../src/components/posts/postItem";
 
 // 이러면 이 페이지는 dynamic rendering으로 보여지게 됨, 참고로 여기서 dynamic은 예약어임
 export const dynamic = "force-dynamic";

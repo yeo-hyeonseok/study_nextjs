@@ -1,5 +1,5 @@
 import { connectDB } from "@/util/db";
-import PostItem from "../src/components/main/postItem";
+import PostItem from "../src/components/posts/postItem";
 
 export const revalidate = 20;
 
