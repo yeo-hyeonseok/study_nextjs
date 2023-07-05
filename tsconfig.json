@@ -35,7 +35,8 @@
     "pages/api/test.js",
     "app/post/[id]/page.jsx",
     "app/list/page.jsx",
-    "app/posts/page.jsx"
+    "app/posts/page.jsx",
+    "app/src/components/main/loginButton.jsx"
   ],
   "exclude": ["node_modules"]
 }
