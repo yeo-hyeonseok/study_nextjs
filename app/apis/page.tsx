@@ -49,7 +49,7 @@ export default function Apis() {
           </div>
         </form>
         <form
-          action="/api/user/register"
+          action="/api/auth/register"
           method="POST"
           className="border-2 border-stone-100 p-2 mt-5"
         >
@@ -62,10 +62,10 @@ export default function Apis() {
             required
           />
           <input
-            name="userId"
+            name="email"
             type="text"
             className="w-full pl-1 pr-1 mt-3"
-            placeholder="ID"
+            placeholder="EMAIL"
             required
           />
           <input
