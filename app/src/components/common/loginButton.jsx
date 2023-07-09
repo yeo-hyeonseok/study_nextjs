@@ -6,7 +6,7 @@ import SuperButton from "../common/superButton";
 export default async function LoginButton({ className }) {
   return (
     <SuperButton
-      text="Github로 로그인하기"
+      text="로그인 하기"
       onClick={() => {
         signIn("", { callbackUrl: "/posts" });
       }}

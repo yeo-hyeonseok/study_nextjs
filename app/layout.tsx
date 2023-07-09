@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-goku`}>
-        <div className="p-2 border border-stone-100">
+        <div className="p-2">
           {session !== null ? (
             <div className="flex justify-between">
               <div className="flex items-center">
