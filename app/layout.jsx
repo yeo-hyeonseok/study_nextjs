@@ -14,14 +14,8 @@ export const metadata = {
   description: "next13 & tailwind & 배포 연습하기",
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
-
-  console.log(session);
 
   return (
     <html lang="en">

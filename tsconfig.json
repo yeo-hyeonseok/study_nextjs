@@ -37,7 +37,9 @@
     "app/list/page.jsx",
     "app/posts/page.jsx",
     "app/src/components/main/loginButton.jsx",
-    "app/src/components/common/logoutButton.jsx"
+    "app/src/components/common/logoutButton.jsx",
+    "app/apis/page.jsx",
+    "app/layout.jsx"
   ],
   "exclude": ["node_modules"]
 }

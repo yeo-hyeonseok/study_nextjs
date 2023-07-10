@@ -15,7 +15,7 @@ export default function Navigation() {
   }
 
   return (
-    <div className={`flex justify-around ${pathName === "/" && "hidden"}`}>
+    <div className={`flex justify-around`}>
       <Link href="/posts" className={getStyle("/posts")}>
         POSTS
       </Link>
@@ -33,6 +33,9 @@ export default function Navigation() {
       </Link>
       <Link href="/rendering" className={getStyle("/rendering")}>
         RENDERING
+      </Link>
+      <Link href="/register" className={getStyle("/register")}>
+        REGISTER
       </Link>
     </div>
   );
