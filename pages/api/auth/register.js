@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         return res.status(500).json("이미 가입된 이메일임");
       }
 
-      collection.insertOne({ ...req.body, password: hash });
+      collection.insertOne({ ...req.body, password: hash, role: "normal" });
       return res.status(200).json("회원가입함");
     } catch (error) {
       console.log(error);

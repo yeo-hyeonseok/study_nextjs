@@ -1,11 +1,14 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { connectDB } from "@/util/db";
-//import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  // 세션 방식, 각 DB에 대한 어댑터가 있음
+  adapter: MongoDBAdapter(connectDB),
   providers: [
     GithubProvider({
       clientId: "b2fb2ddb9211af8c40c7",
@@ -62,6 +65,7 @@ export const authOptions = {
           user.image ?? "https://avatars.githubusercontent.com/u/95332775?v=4";
         token.user.name = user.username ?? user.name;
         token.user.email = user.email;
+        token.user.role = user.role;
       }
       return token;
     },
@@ -71,9 +75,6 @@ export const authOptions = {
       return session;
     },
   },
-
-  //adapter: MongoDBAdapter(connectDB),
-  secret: "qwer1234",
 };
 
 export default NextAuth(authOptions);

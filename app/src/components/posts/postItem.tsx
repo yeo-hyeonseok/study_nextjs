@@ -8,6 +8,7 @@ interface PostItemProps {
   postId?: string;
   title: string;
   content: string;
+  isAuthor?: boolean;
 }
 
 export default function PostItem({
@@ -15,6 +16,7 @@ export default function PostItem({
   postId,
   title,
   content,
+  isAuthor,
 }: PostItemProps) {
   const router = useRouter();
 
@@ -51,25 +53,27 @@ export default function PostItem({
       <p className="text-stone-100 text-lg border border-stone-100 p-2">
         {content}
       </p>
-      <div className="border border-stone-100 p-2 flex justify-end">
-        <SuperButton
-          text="수정"
-          className="mr-2"
-          onClick={() => {
-            router.push(`/post/${postId}`);
-          }}
-        />
-        <SuperButton
-          text="삭제"
-          onClick={() => {
-            deletePost();
-            setDeletedStyle("opacity-0");
-            setTimeout(() => {
-              setDeletedStyle("hidden");
-            }, 500);
-          }}
-        />
-      </div>
+      {isAuthor && (
+        <div className="border border-stone-100 p-2 flex justify-end">
+          <SuperButton
+            text="수정"
+            className="mr-2"
+            onClick={() => {
+              router.push(`/post/${postId}`);
+            }}
+          />
+          <SuperButton
+            text="삭제"
+            onClick={() => {
+              deletePost();
+              setDeletedStyle("opacity-0");
+              setTimeout(() => {
+                setDeletedStyle("hidden");
+              }, 500);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

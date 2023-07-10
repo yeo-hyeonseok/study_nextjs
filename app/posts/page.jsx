@@ -1,5 +1,7 @@
 import { connectDB } from "@/util/db";
 import PostItem from "../src/components/posts/postItem";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 // 이러면 이 페이지는 dynamic rendering으로 보여지게 됨, 참고로 여기서 dynamic은 예약어임
 export const dynamic = "force-dynamic";
@@ -12,6 +14,8 @@ export default async function Posts() {
   const db = (await connectDB).db("forum");
   const posts = await db.collection("post").find().toArray();
 
+  const session = await getServerSession(authOptions);
+
   return (
     <div className="flex items-center flex-col">
       <div className="w-1/3 mt-5">
@@ -21,6 +25,11 @@ export default async function Posts() {
             postId={post._id.toString()}
             title={post.title}
             content={post.content}
+            isAuthor={
+              session &&
+              (session.user.email === post.author ||
+                session.user.role === "admin")
+            }
           />
         ))}
       </div>
