@@ -1,13 +1,16 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SuperButton from "../common/superButton";
+import CommentList from "./commentList";
 
 interface PostItemProps {
   id?: string;
-  postId?: string;
+  postId: string;
   title: string;
   content: string;
+  author?: string;
   isAuthor?: boolean;
 }
 
@@ -16,6 +19,7 @@ export default function PostItem({
   postId,
   title,
   content,
+  author,
   isAuthor,
 }: PostItemProps) {
   const router = useRouter();
@@ -47,33 +51,34 @@ export default function PostItem({
 
   return (
     <div id={id} className={`mt-6 transition-all duration-500 ${deletedStyle}`}>
-      <p className="text-stone-100 text-xl font-semibold border border-stone-100 p-2 block">
-        TITLE: {title}
-      </p>
+      <div className="flex border border-stone-100 p-2 justify-between items-center">
+        <p className="text-stone-100 text-xl font-semibold">TITLE: {title}</p>
+        {isAuthor && (
+          <div>
+            <SuperButton
+              text="수정"
+              className="mr-2"
+              onClick={() => {
+                router.push(`/post/${postId}`);
+              }}
+            />
+            <SuperButton
+              text="삭제"
+              onClick={() => {
+                deletePost();
+                setDeletedStyle("opacity-0");
+                setTimeout(() => {
+                  setDeletedStyle("hidden");
+                }, 500);
+              }}
+            />
+          </div>
+        )}
+      </div>
       <p className="text-stone-100 text-lg border border-stone-100 p-2">
         {content}
       </p>
-      {isAuthor && (
-        <div className="border border-stone-100 p-2 flex justify-end">
-          <SuperButton
-            text="수정"
-            className="mr-2"
-            onClick={() => {
-              router.push(`/post/${postId}`);
-            }}
-          />
-          <SuperButton
-            text="삭제"
-            onClick={() => {
-              deletePost();
-              setDeletedStyle("opacity-0");
-              setTimeout(() => {
-                setDeletedStyle("hidden");
-              }, 500);
-            }}
-          />
-        </div>
-      )}
+      <CommentList postId={postId} author={author} />
     </div>
   );
 }

@@ -39,7 +39,8 @@
     "app/src/components/main/loginButton.jsx",
     "app/src/components/common/logoutButton.jsx",
     "app/apis/page.jsx",
-    "app/layout.jsx"
+    "app/layout.jsx",
+    "app/src/components/posts/commentList.jsx"
   ],
   "exclude": ["node_modules"]
 }
