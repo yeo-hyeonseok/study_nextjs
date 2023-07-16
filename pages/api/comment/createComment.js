@@ -17,11 +17,14 @@ export default async function Handler(req, res) {
     }
 
     try {
+      const parse = JSON.parse(req.body);
+
       const collection = await db.collection("comment");
       collection.insertOne({
-        ...JSON.parse(req.body),
-        postId: new ObjectId(req.body.postId),
-        author: session.user.email,
+        ...parse,
+        postId: new ObjectId(parse.postId),
+        author: session.user.name,
+        authorId: session.user.email,
       });
 
       return res.status(200).json("댓글 작성됨");

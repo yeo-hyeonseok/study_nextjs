@@ -33,6 +33,7 @@ export default function CommentInput({ postId }: CommentInputProps) {
               comment: input,
             }),
           });
+          setInput("");
         }}
       />
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SuperButton from "../common/superButton";
 import CommentList from "./commentList";
 
@@ -23,6 +23,7 @@ export default function PostItem({
   const router = useRouter();
 
   const [deletedStyle, setDeletedStyle] = useState("opacity-100");
+  const [comments, setComments] = useState([]);
 
   const deletePost = () => {
     // 쿼리 쓰면 장점이 GET 요청할 때도 서버한테 데이터를 보낼 수 있음
@@ -46,6 +47,14 @@ export default function PostItem({
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    fetch(`/api/comment/getComment?postId=${postId}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setComments(result);
+      });
+  });
 
   return (
     <div id={id} className={`mt-6 transition-all duration-500 ${deletedStyle}`}>
@@ -76,7 +85,7 @@ export default function PostItem({
       <p className="text-stone-100 text-lg border border-stone-100 p-2">
         {content}
       </p>
-      <CommentList postId={postId} />
+      <CommentList postId={postId} comments={comments} />
     </div>
   );
 }

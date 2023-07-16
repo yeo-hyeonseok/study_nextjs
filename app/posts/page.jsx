@@ -21,7 +21,7 @@ export default async function Posts() {
       <div className="w-1/3 mt-5">
         {posts.map((post, _) => (
           <PostItem
-            key={post._id}
+            key={post._id.toString()}
             postId={post._id.toString()}
             title={post.title}
             content={post.content}
