@@ -5,10 +5,9 @@ import SuperButton from "../common/superButton";
 
 interface CommentInputProps {
   postId: string;
-  author?: string;
 }
 
-export default function CommentInput({ postId, author }: CommentInputProps) {
+export default function CommentInput({ postId }: CommentInputProps) {
   const [input, setInput] = useState("");
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,12 +26,11 @@ export default function CommentInput({ postId, author }: CommentInputProps) {
       <SuperButton
         text="댓글쓰기"
         onClick={() => {
-          fetch("/api/post/createComment", {
+          fetch("/api/comment/createComment", {
             method: "POST",
             body: JSON.stringify({
               postId: postId,
               comment: input,
-              author: author,
             }),
           });
         }}

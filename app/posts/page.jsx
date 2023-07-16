@@ -25,7 +25,6 @@ export default async function Posts() {
             postId={post._id.toString()}
             title={post.title}
             content={post.content}
-            author={session && session.user.email}
             isAuthor={
               session &&
               (session.user.email === post.author ||

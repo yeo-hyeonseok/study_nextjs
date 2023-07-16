@@ -1,13 +1,14 @@
 import { connectDB } from "@/util/db";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default async function Handler(req, res) {
   const db = (await connectDB).db("forum");
+  const session = await getServerSession(req, res, authOptions);
 
   if (req.method === "POST") {
-    console.log(req.body);
-
-    if (req.body.author === null) {
+    if (session === null) {
       return res.status(500).json("로그인 해주셈");
     }
 
@@ -20,9 +21,10 @@ export default async function Handler(req, res) {
       collection.insertOne({
         ...JSON.parse(req.body),
         postId: new ObjectId(req.body.postId),
+        author: session.user.email,
       });
 
-      return res.redirect(302, "/posts");
+      return res.status(200).json("댓글 작성됨");
     } catch (error) {
       console.log(error);
     }

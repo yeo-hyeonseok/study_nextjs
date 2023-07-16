@@ -10,7 +10,6 @@ interface PostItemProps {
   postId: string;
   title: string;
   content: string;
-  author?: string;
   isAuthor?: boolean;
 }
 
@@ -19,7 +18,6 @@ export default function PostItem({
   postId,
   title,
   content,
-  author,
   isAuthor,
 }: PostItemProps) {
   const router = useRouter();
@@ -78,7 +76,7 @@ export default function PostItem({
       <p className="text-stone-100 text-lg border border-stone-100 p-2">
         {content}
       </p>
-      <CommentList postId={postId} author={author} />
+      <CommentList postId={postId} />
     </div>
   );
 }
