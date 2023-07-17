@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     try {
       const collection = await db.collection("post");
-      collection.insertOne(req.body);
+      collection.insertOne({ ...req.body, likes: 0, likeUsers: [] });
 
       return res.redirect(302, "/posts");
     } catch (error) {
