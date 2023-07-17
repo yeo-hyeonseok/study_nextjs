@@ -55,7 +55,7 @@ export default function CommentList({ postId, comments }: CommentListProps) {
                 );
               })
             ) : (
-              <div className="p-2 text-stone-100">댓글 없음</div>
+              <div className="p-2 text-stone-100 text-sm">댓글 없음</div>
             )}
           </div>
         )}
