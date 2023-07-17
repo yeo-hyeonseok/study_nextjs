@@ -19,7 +19,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-goku`}>
+      <body className={`${inter.className} bg-goku2`}>
         <div className="p-2">
           {session !== null ? (
             <div className="flex justify-between">

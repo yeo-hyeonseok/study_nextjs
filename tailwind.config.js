@@ -12,6 +12,7 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         goku: "url('/images/goku.jpg')",
+        goku2: "url('/images/goku_2.jpg')",
       },
     },
   },
