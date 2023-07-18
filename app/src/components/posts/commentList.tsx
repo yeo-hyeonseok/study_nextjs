@@ -5,22 +5,36 @@ import CommentInput from "./commentInput";
 interface CommentListProps {
   postId: string;
   comments: Array<{ _id: any; postId: any; comment: string; author: string }>;
+  setComments: Function;
 }
 
-export default function CommentList({ postId, comments }: CommentListProps) {
+export default function CommentList({
+  postId,
+  comments,
+  setComments,
+}: CommentListProps) {
   const [isShow, setIsShow] = useState(false);
 
   const deleteComment = (id: string) => {
-    fetch(`/api/comment/deleteComment?id=${id}`, {
+    fetch("/api/comment/deleteComment", {
       method: "POST",
+      body: JSON.stringify({
+        postId: postId,
+        commentId: id,
+      }),
     })
       .then((res) => {
         if (res.status === 200) {
           return res.json();
+        } else {
+          throw "님은 삭제할 수 없음";
         }
       })
+      .then((result) => {
+        setComments(result);
+      })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -35,7 +49,7 @@ export default function CommentList({ postId, comments }: CommentListProps) {
         </div>
         {isShow && (
           <div>
-            {comments.length > 0 ? (
+            {comments && comments.length > 0 ? (
               comments.map((comment) => {
                 return (
                   <div
@@ -60,7 +74,7 @@ export default function CommentList({ postId, comments }: CommentListProps) {
           </div>
         )}
       </div>
-      <CommentInput postId={postId} />
+      <CommentInput postId={postId} setComments={setComments} />
     </div>
   );
 }

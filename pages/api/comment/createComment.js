@@ -20,14 +20,20 @@ export default async function Handler(req, res) {
       const parse = JSON.parse(req.body);
 
       const collection = await db.collection("comment");
-      collection.insertOne({
+
+      await collection.insertOne({
         ...parse,
         postId: new ObjectId(parse.postId),
         author: session.user.name,
         authorId: session.user.email,
       });
 
-      return res.status(200).json("댓글 작성됨");
+      const comments = await db
+        .collection("comment")
+        .find({ postId: new ObjectId(parse.postId) })
+        .toArray();
+
+      return res.status(200).json(comments);
     } catch (error) {
       console.log(error);
     }

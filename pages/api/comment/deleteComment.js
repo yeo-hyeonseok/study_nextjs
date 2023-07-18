@@ -9,10 +9,12 @@ export default async function Handler(req, res) {
 
   if (req.method === "POST") {
     try {
+      const parse = JSON.parse(req.body);
+
       const collection = await db.collection("comment");
 
       const comment = await collection.findOne({
-        _id: new ObjectId(req.query.id),
+        _id: new ObjectId(parse.commentId),
       });
 
       if (
@@ -21,14 +23,19 @@ export default async function Handler(req, res) {
           session.user.role === "admin")
       ) {
         const result = await collection.deleteOne({
-          _id: new ObjectId(req.query.id),
+          _id: new ObjectId(parse.commentId),
         });
 
         if (result.deletedCount === 0) {
           return res.status(500);
         }
 
-        return res.status(200).json("삭제됨");
+        const comments = await db
+          .collection("comment")
+          .find({ postId: new ObjectId(parse.postId) })
+          .toArray();
+
+        return res.status(200).json(comments);
       } else {
         return res.status(500).json("님은 삭제할 수 없음");
       }

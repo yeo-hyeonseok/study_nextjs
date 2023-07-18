@@ -5,9 +5,13 @@ import SuperButton from "../common/superButton";
 
 interface CommentInputProps {
   postId: string;
+  setComments: Function;
 }
 
-export default function CommentInput({ postId }: CommentInputProps) {
+export default function CommentInput({
+  postId,
+  setComments,
+}: CommentInputProps) {
   const [input, setInput] = useState("");
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +36,16 @@ export default function CommentInput({ postId }: CommentInputProps) {
               postId: postId,
               comment: input,
             }),
-          });
+          })
+            .then((res) => {
+              if (res.status === 200) {
+                return res.json();
+              }
+            })
+            .then((result) => {
+              setComments(result);
+            });
+
           setInput("");
         }}
       />

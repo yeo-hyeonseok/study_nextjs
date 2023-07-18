@@ -60,7 +60,7 @@ export default function PostItem({
         }
       })
       .then((result) => {
-        console.log(result);
+        setLikes(result.likes);
       })
       .catch((error) => {
         alert(error);
@@ -79,7 +79,7 @@ export default function PostItem({
       .then((result) => {
         setLikes(result.likes);
       });
-  });
+  }, []);
 
   return (
     <div id={id} className={`mt-6 transition-all duration-500 ${deletedStyle}`}>
@@ -121,7 +121,11 @@ export default function PostItem({
         </span>
         <span>{likes}</span>
       </div>
-      <CommentList postId={postId} comments={comments} />
+      <CommentList
+        postId={postId}
+        comments={comments}
+        setComments={setComments}
+      />
     </div>
   );
 }
