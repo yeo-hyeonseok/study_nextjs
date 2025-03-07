@@ -14,8 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-primary text-neutral">
-        <Header />
+      <body className="bg-primary text-neutral h-[100dvh]">
+        <Header className="fixed" />
         {children}
       </body>
     </html>

@@ -2,9 +2,15 @@
 
 @theme {
   --color-primary: #1c3c92;
+  --color-primary-dark: #142a6a;
+  --color-primary-darker: #0d1c49;
+  --color-primary-light: #3f5fbf;
+  --color-primary-lighter: #7289da;
+  --color-primary-soft: #d3d9f2;
   --color-secondary: #4fa349;
   --color-tertiary: #c15c46;
   --color-neutral: #f5f5f4;
+  --color-accent: #ffcc00;
 }
 
 @font-face {

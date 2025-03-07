@@ -11,17 +11,15 @@ interface Props {
 const links = [
   {
     href: "/",
-    label: "홈",
+    label: "HOME",
   },
   {
     href: "/digimons",
-    label: "디지몬 목록",
+    label: "DIGIMONS",
   },
 ];
 
-export default function Header(props: Props) {
-  const { className } = props;
-
+export default function Header({ className }: Props) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -31,14 +29,16 @@ export default function Header(props: Props) {
   }, [router]); */
 
   return (
-    <header className={`${className} flex justify-between md:px-6 px-4 py-4`}>
-      <h1 className="text-xl cursor-pointer" onClick={() => router.push("/")}>
-        디지몬 도감
+    <header
+      className={`${className} flex justify-between shadow-md md:px-6 px-4 py-4 w-full bg-primary-dark`}
+    >
+      <h1 className="text-2xl cursor-pointer" onClick={() => router.push("/")}>
+        DIGI-DICTIONARY
       </h1>
-      <nav className="flex gap-12 text-xl">
+      <nav className="flex gap-12 text-2xl">
         {links.map(({ href, label }) => (
           <Link
-            className={`${pathname === href && "text-secondary"}`}
+            className={`${pathname === href && "text-accent"}`}
             key={label}
             // 해당 링크의 페이지의 데이터를 미리 가져올 지 여부를 설정
             // 뷰포트 안에 들어오거나 마우스로 호버하는 경우 해당 페이지의 정적 데이터를 미리 로드함
