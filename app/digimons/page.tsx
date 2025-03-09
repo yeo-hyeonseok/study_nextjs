@@ -1,13 +1,18 @@
+"use client";
+
+import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
+import { getRandomNum } from "@/lib/utils";
+
 export default function Digimons() {
-  const numbers = ["1~100", "101~200", "201~300", "301~400", "401~500"];
+  const router = useRouter();
 
   return (
     <div>
-      <ul>
-        {numbers.map((number, index) => (
-          <li key={index}>{number}</li>
-        ))}
-      </ul>
+      <Button
+        label="Get Random Digimon!"
+        onClick={() => router.push(`/digimons/${getRandomNum(1460)}`)}
+      />
     </div>
   );
 }

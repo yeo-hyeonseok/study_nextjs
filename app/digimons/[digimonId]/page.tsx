@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getDigimon } from "@/lib/digimonApi";
+import { getDigimon } from "@/lib/api";
 
 interface Props {
   params: Promise<{ digimonId: string }>;
