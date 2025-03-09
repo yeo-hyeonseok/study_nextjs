@@ -30,7 +30,7 @@ export default function Header({ className }: Props) {
 
   return (
     <header
-      className={`${className} flex justify-between shadow-md md:px-6 px-4 py-4 w-full bg-primary-dark`}
+      className={`${className} flex justify-between shadow-lg md:px-6 px-4 py-4 w-full bg-primary-dark`}
     >
       <h1 className="text-2xl cursor-pointer" onClick={() => router.push("/")}>
         DIGI-DICTIONARY
