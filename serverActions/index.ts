@@ -1,3 +1,5 @@
+"use server";
+
 export interface Digimon {
   id: number;
   name: string;
@@ -11,10 +13,8 @@ export const getDigimon = async (
   digimonId: string
 ): Promise<Digimon | undefined> => {
   try {
-    console.log("[getDigimon] from lib/api");
+    console.log("[getDigimon] from serverActions");
 
-    // Route Handler에서 요청하는 경우
-    // const res = await fetch(`http://localhost:3000/api/digimons/${digimonId}`);
     const res = await fetch(`https://digi-api.com/api/v1/digimon/${digimonId}`);
 
     if (!res.ok) throw new Error("[getDigimon] 디지몬 정보 불러오기 실패");
