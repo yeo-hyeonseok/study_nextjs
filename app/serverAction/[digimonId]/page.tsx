@@ -29,12 +29,20 @@ export default function ServerAction() {
   return (
     <div className="text-neutral bg-primary-light lg:w-2/3 h-2/3 flex gap-2.5 p-2.5 shadow-lg mx-4">
       <div className="w-1/2 relative overflow-hidden">
-        <Image
-          src={digimon?.image ?? "/images/grid.png"}
-          alt={digimon?.name ?? ""}
-          fill={true}
-          style={{ objectFit: "cover" }}
-        />
+        {digimon && (
+          <Image
+            src={digimon.image}
+            alt={digimon.name}
+            fill={true}
+            sizes="400"
+            style={{ objectFit: "cover" }}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII="
+            // Image 컴포넌트가 브라우저 상에서 렌더링 되었을 때 실행할 함수를 정의할 수 있음
+            // onLoad 속성은 클라이언트 컴포넌트에서만 사용 가능
+            onLoad={() => console.log("이미지 로드됨")}
+          />
+        )}
       </div>
       <div className="flex-1 flex flex-col gap-2.5">
         <div className={`${commonStyles}`}>

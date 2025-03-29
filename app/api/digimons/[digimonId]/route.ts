@@ -8,9 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 type Context = {
-  params: {
-    digimonId: string;
-  };
+  params: Promise<{ digimonId: string }>;
 };
 
 export async function GET(_: NextRequest, context: Context) {
