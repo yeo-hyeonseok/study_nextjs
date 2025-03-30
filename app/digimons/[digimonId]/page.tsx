@@ -5,6 +5,18 @@ interface Props {
   params: Promise<{ digimonId: string }>;
 }
 
+// - 동적 메타 데이터를 생성하고 싶다면 generateMetadata를 호출하면 됨
+// - generateMetadata는 예약된 함수명이므로 다른 이름으로는 사용 불가
+export async function generateMetadata({ params }: Props) {
+  const { digimonId } = await params;
+  const digimon = await getDigimon(digimonId);
+
+  return {
+    title: `NO.${digimon?.id} ${digimon?.name}`,
+    description: digimon?.description,
+  };
+}
+
 export default async function DigimonDetail({ params }: Props) {
   const { digimonId } = await params;
   const digimon = await getDigimon(digimonId);
