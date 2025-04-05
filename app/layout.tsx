@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-primary text-neutral h-[100dvh]">
-        <Header className="fixed" />
+        <Header className="fixed z-50" />
         {children}
       </body>
     </html>

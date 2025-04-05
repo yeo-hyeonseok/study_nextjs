@@ -14,6 +14,10 @@ const links = [
     label: "HOME",
   },
   {
+    href: "/login",
+    label: "LOGIN",
+  },
+  {
     href: "/digimons",
     label: "DIGIMONS",
   },

@@ -11,7 +11,7 @@ interface Props {
 export default function Button({ className, label, onClick }: Props) {
   return (
     <button
-      className={`${className} bg-secondary py-2 px-4 rounded-sm text-xl cursor-pointer`}
+      className={`${className} bg-secondary py-2 px-4 text-xl cursor-pointer`}
       onClick={onClick}
     >
       {label}
