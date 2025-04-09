@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-
+import Link from "next/link";
 import Button from "@/components/Button";
+import TextInput from "@/components/TextInput";
 
 export default function Login() {
   const params = useSearchParams();
@@ -22,23 +23,16 @@ export default function Login() {
   return (
     <div className="h-[100dvh] flex flex-col justify-center gap-6 items-center">
       {message && <h2 className="text-accent text-xl">{message}</h2>}
-      <form className="flex gap-2">
+      <form className="flex gap-2" method="post">
         <div className="flex flex-col gap-2">
-          <input
-            className="bg-primary-dark p-2 text-xl"
-            type="text"
-            name="id"
-            placeholder="Id"
-          />
-          <input
-            className="bg-primary-dark p-2 text-xl"
-            type="text"
-            name="password"
-            placeholder="Password"
-          />
+          <TextInput name="id" placeholder="Id" />
+          <TextInput name="password" placeholder="Password" />
         </div>
         <Button label="Login" />
       </form>
+      <Link className="text-xl underline text-neutral" href="/register">
+        Sign up
+      </Link>
     </div>
   );
 }
