@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Digimon, getDigimon } from "@/serverActions";
+import { Digimon, getDigimon } from "@/serverActions/digimon";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

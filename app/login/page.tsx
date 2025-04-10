@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { signInWithCredentials } from "@/serverActions/auth";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
 
@@ -23,7 +24,7 @@ export default function Login() {
   return (
     <div className="h-[100dvh] flex flex-col justify-center gap-6 items-center">
       {message && <h2 className="text-accent text-xl">{message}</h2>}
-      <form className="flex gap-2" method="post">
+      <form className="flex gap-2" action={signInWithCredentials}>
         <div className="flex flex-col gap-2">
           <TextInput name="id" placeholder="Id" />
           <TextInput name="password" placeholder="Password" />
