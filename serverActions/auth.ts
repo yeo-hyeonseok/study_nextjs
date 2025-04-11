@@ -12,7 +12,10 @@ export const signInWithCredentials = async (formData: FormData) => {
 };
 
 export const signOutWithForm = async () => {
-  await signOut();
+  await signOut({
+    // 로그아웃 시 리다이렉트 할 경로도 설정할 수 있는데 기본 설정은 "/"임
+    // redirectTo: "/login",
+  });
 };
 
 export { auth as getSession };

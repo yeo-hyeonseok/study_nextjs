@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-//import { useEffect } from "react";
+import { getSession, signOutWithForm } from "@/serverActions/auth";
 
 interface Props {
   className?: string;
@@ -14,35 +11,24 @@ const links = [
     label: "HOME",
   },
   {
-    href: "/login",
-    label: "LOGIN",
-  },
-  {
     href: "/digimons",
     label: "DIGIMONS",
   },
 ];
 
-export default function Header({ className }: Props) {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  // 프로그래밍 방식의 탐색에서는 다음과 같이 미리 가져오기 구현 가능
-  /* useEffect(() => {
-    router.prefetch("/digimons");
-  }, [router]); */
+export default async function Header({ className }: Props) {
+  const session = await getSession();
 
   return (
     <header
       className={`${className} flex justify-between shadow-md md:px-6 px-4 py-4 w-full bg-primary-dark`}
     >
-      <h1 className="text-2xl cursor-pointer" onClick={() => router.push("/")}>
-        DIGI-DICTIONARY
-      </h1>
-      <nav className="flex gap-12 text-2xl">
+      <Link className="text-2xl cursor-pointer" href="/">
+        DIGI-DICT
+      </Link>
+      <nav className="flex gap-12 text-2xl items-center">
         {links.map(({ href, label }) => (
           <Link
-            className={`${pathname === href && "text-accent"}`}
             key={label}
             // 해당 링크의 페이지의 데이터를 미리 가져올 지 여부를 설정
             // 뷰포트 안에 들어오거나 마우스로 호버하는 경우 해당 페이지의 정적 데이터를 미리 로드함
@@ -56,6 +42,20 @@ export default function Header({ className }: Props) {
             {label}
           </Link>
         ))}
+        {session?.user ? (
+          <form action={signOutWithForm}>
+            <button className="cursor-pointer text-2xl border-2 px-2.5 border-neutral rounded-sm">
+              LOGOUT
+            </button>
+          </form>
+        ) : (
+          <Link
+            className="text-2xl border-2 px-2.5 border-neutral rounded-sm"
+            href="/login"
+          >
+            LOGIN
+          </Link>
+        )}
       </nav>
     </header>
   );

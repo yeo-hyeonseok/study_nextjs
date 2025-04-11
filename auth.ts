@@ -19,7 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const { id, email } = credentials as User;
 
         if (email) {
-          // 회원가입 시 로직
+          //  ---- 회원가입 시 로직 ----
 
           return {
             id,
@@ -27,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           };
         }
 
-        // 로그인 시 로직
+        // ---- 로그인 시 로직 -----
         return { id, email };
       },
     }),
