@@ -43,11 +43,14 @@ export default async function Header({ className }: Props) {
           </Link>
         ))}
         {session?.user ? (
-          <form action={signOutWithForm}>
-            <button className="cursor-pointer text-2xl border-2 px-2.5 border-neutral rounded-sm">
-              LOGOUT
-            </button>
-          </form>
+          <>
+            <Link href="/account">ACCOUNT</Link>
+            <form action={signOutWithForm}>
+              <button className="cursor-pointer text-2xl border-2 px-2.5 border-neutral rounded-sm">
+                LOGOUT
+              </button>
+            </form>
+          </>
         ) : (
           <Link
             className="text-2xl border-2 px-2.5 border-neutral rounded-sm"
