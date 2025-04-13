@@ -20,7 +20,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (email) {
           //  ---- 회원가입 시 로직 ----
-
           return {
             id,
             email,
@@ -45,8 +44,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return session;
     },
-    jwt: async ({ token, user }) => {
-      if (user) token.id = user.id;
+    jwt: async ({ token, user, trigger, session }) => {
+      // user는 로그인 시 존재하는 데이터로 로그인된 사용자 정보를 담고 있음
+      if (user) {
+        token.id = user.id;
+      }
+
+      // 클라이언트에서 update 함수를 호출할 때 'update' trigger가 발생
+      // session은 update 함수의 인자로 전달한 사용자 정의 세션 정보
+      if (trigger === "update" && session) {
+        token.id = session.user.id;
+        token.email = session.user.email;
+
+        return token;
+      }
 
       return token;
     },

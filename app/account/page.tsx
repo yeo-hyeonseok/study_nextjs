@@ -4,36 +4,48 @@ import { useEffect, useState } from "react";
 import { signInWithCredentials } from "@/serverActions/auth";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { User } from "next-auth";
+import { useRouter } from "next/navigation";
 
 export default function Account() {
-  const [id, setId] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { data: session, update } = useSession();
+  const router = useRouter();
+
+  const [user, setUser] = useState<User>({
+    id: "",
+    email: "",
+  });
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     if (name === "id") {
-      setId(value);
-    } else if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
+      setUser((prev) => ({ ...prev, id: value }));
+    }
+
+    if (name === "email") {
+      setUser((prev) => ({ ...prev, email: value }));
     }
   };
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      const user = (await getSession())?.user;
+  const updateUser = async () => {
+    await update({
+      user: {
+        id: user.id,
+        email: user.email,
+      },
+    });
+    router.push("/");
+  };
 
-      if (user) {
-        setId(user.id ?? "");
-        setEmail(user.email ?? "");
-      }
-    };
-    fetchSession();
-  }, []);
+  useEffect(() => {
+    const user = session?.user;
+
+    if (user) {
+      setUser(user);
+    }
+  }, [session]);
 
   return (
     <div className="h-[100dvh] flex flex-col justify-center gap-6 items-center">
@@ -47,22 +59,17 @@ export default function Account() {
             name="id"
             placeholder="Id"
             onChange={handelChange}
-            value={id}
+            value={user.id ?? ""}
           />
           <TextInput
             name="email"
             placeholder="Email"
             onChange={handelChange}
-            value={email}
+            value={user.email ?? ""}
           />
-          <TextInput
-            name="password"
-            placeholder="Password"
-            onChange={handelChange}
-            value={password}
-          />
+          <TextInput name="password" placeholder="Password" />
         </div>
-        <Button label="Update" />
+        <Button type="button" onClick={updateUser} label="Update" />
       </form>
     </div>
   );
