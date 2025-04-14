@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { signInWithCredentials } from "@/serverActions/auth";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
 import { useSession } from "next-auth/react";
@@ -49,10 +48,7 @@ export default function Account() {
 
   return (
     <div className="h-[100dvh] flex flex-col justify-center gap-6 items-center">
-      <form
-        className="flex flex-col items-center gap-8"
-        action={signInWithCredentials}
-      >
+      <form className="flex flex-col items-center gap-8">
         <div className="flex flex-col gap-2">
           <h2 className="text-center text-2xl mb-2">Account</h2>
           <TextInput

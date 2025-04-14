@@ -18,16 +18,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         const { id, email } = credentials as User;
 
-        if (email) {
-          //  ---- 회원가입 시 로직 ----
-          return {
-            id,
-            email,
-          };
-        }
+        try {
+          if (email) {
+            //  ---- 회원가입 시 로직 ----
+            return {
+              id,
+              email,
+            };
+          }
 
-        // ---- 로그인 시 로직 -----
-        return { id, email };
+          // ---- 로그인 시 로직 -----
+          return { id, email };
+        } catch (error) {
+          if (error instanceof Error) throw new Error(error.message);
+
+          throw new Error("인증 오류 발생");
+        }
       },
     }),
   ],
