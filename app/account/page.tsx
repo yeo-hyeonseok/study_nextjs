@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Button from "@/components/Button";
-import TextInput from "@/components/TextInput";
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
 import { useRouter } from "next/navigation";
+import TextInput from "@/components/TextInput";
+import Button from "@/components/Button";
 
 export default function Account() {
   const { data: session, update } = useSession();

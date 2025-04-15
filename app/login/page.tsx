@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useActionState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { signInWithCredentials } from "@/serverActions/auth";
-import Button from "@/components/Button";
+import SubmitButton from "@/components/SubmitButton";
 import TextInput from "@/components/TextInput";
-import { useActionState } from "react";
 
 export default function Login() {
   const params = useSearchParams();
@@ -40,7 +39,7 @@ export default function Login() {
           <TextInput name="id" placeholder="Id" />
           <TextInput name="password" placeholder="Password" />
         </div>
-        <Button label="Login" />
+        <SubmitButton label="Login" loadingMsg="Logging in..." />
       </form>
       <Link className="text-xl underline text-neutral" href="/register">
         Sign up

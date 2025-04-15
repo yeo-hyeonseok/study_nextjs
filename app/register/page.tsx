@@ -1,9 +1,9 @@
 "use client";
 
-import Button from "@/components/Button";
-import TextInput from "@/components/TextInput";
 import { useActionState } from "react";
 import { signInWithCredentials } from "@/serverActions/auth";
+import TextInput from "@/components/TextInput";
+import SubmitButton from "@/components/SubmitButton";
 
 export default function Register() {
   const [state, action] = useActionState(signInWithCredentials, {
@@ -22,7 +22,7 @@ export default function Register() {
           <TextInput name="email" placeholder="Email" />
           <TextInput name="password" placeholder="Password" />
         </div>
-        <Button label="Create Account" />
+        <SubmitButton label="Create Account" loadingMsg="Creating account..." />
       </form>
     </div>
   );
