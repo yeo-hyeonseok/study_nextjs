@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, signIn, signOut } from "@/auth";
+import { redirect } from "next/navigation";
 
 export const signInWithCredentials = async (
   initialState: { message: string },
@@ -13,15 +14,15 @@ export const signInWithCredentials = async (
       password: formData.get("password") || "",
       redirect: false,
     });
-
-    return { message: "success" };
   } catch (error) {
     if (error instanceof Error) {
       return { message: error.message };
     }
 
-    return { message: "Login failed" };
+    return { message: "An unexpected error occurred" };
   }
+
+  redirect("/");
 };
 
 export const signOutWithForm = async () => {
