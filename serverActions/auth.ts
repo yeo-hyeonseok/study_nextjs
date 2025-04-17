@@ -25,6 +25,10 @@ export const signInWithCredentials = async (
   redirect("/");
 };
 
+export const signInWithGoogle = async () => {
+  await signIn("google", { redirectTo: "/" });
+};
+
 export const signOutWithForm = async () => {
   await signOut({
     redirectTo: "/",

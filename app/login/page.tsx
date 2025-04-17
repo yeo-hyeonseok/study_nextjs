@@ -4,8 +4,9 @@ import { useEffect, useState, useActionState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { signInWithCredentials } from "@/serverActions/auth";
-import SubmitButton from "@/components/SubmitButton";
 import TextInput from "@/components/TextInput";
+import SubmitButton from "@/components/SubmitButton";
+import GoogleLoginButton from "@/components/GoogleLoginButton";
 
 export default function Login() {
   const params = useSearchParams();
@@ -44,6 +45,7 @@ export default function Login() {
       <Link className="text-xl underline text-neutral" href="/register">
         Sign up
       </Link>
+      <GoogleLoginButton />
     </div>
   );
 }
