@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 
 interface User {
   id?: string;
@@ -36,6 +37,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
       },
     }),
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent", // 사용자에게 항상 동의 화면을 표시
+        },
+      },
+    }),
   ],
   // callbacks 속성을 통해서 인증 흐름을 커스터마이징할 수 있음
   callbacks: {
@@ -43,6 +53,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     // 인증된 사용자인지 아닌지 판별
     authorized: async ({ auth }) => {
       return !!auth;
+    },
+    signIn: async ({ account, profile }) => {
+      if (account?.provider === "google") {
+        // 구글 자체 인증 과정을 거친 후의 최종적인 데이터
+        const isVerified = profile?.email_verified;
+
+        // 올바르지 않은 구글 계정일 시 에러 페이지로 리다이렉트
+        if (!isVerified) {
+          const errorMessage = encodeURIComponent("Invalid Google account");
+
+          return `/error?message=${errorMessage}`;
+        }
+
+        // ---- 로그인 또는 회원가입 시 로직 ----
+
+        return true;
+      }
+
+      // 다른 로그인 방식일 경우 기본적으로 허용
+      return true;
     },
     // email외의 데이터를 세션에 포함시키고 싶다면 아래와 같이 하면 됨
     session: async ({ session, token }) => {
